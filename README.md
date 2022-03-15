@@ -8,6 +8,10 @@
 
 This bot allows server staff to manage giveaway **donations**, using a MySQL database & good old TypeScript. So far, capabilities are limited because I have not implemented any commands regarding settings and such, but the bot is able to perform basic logging & data management.
 
+The bot is designed to log donations involving **virtual** currency, from other Discord bots. Other types of donations will be added in the future.
+
+This is not a publicly hosted bot, you will need to host it yourself. Refer to the `SELF-HOSTING` section below.
+
 ## USING THE BOT
 
 To use this bot, prepend `gw!` (or the prefix of your choice, if you happen to change the `config.json` file) before any command, such as `gw!help`. Each command has a help message, in case you forget how to use it.
