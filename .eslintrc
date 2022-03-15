@@ -17,6 +17,7 @@
         "ecmaVersion": 2021
     },
     "rules": {
+        "arrow-parens": "always",
         "comma-dangle": ["error", "always-multiline"],
         "comma-spacing": "error",
         "comma-style": "error",
