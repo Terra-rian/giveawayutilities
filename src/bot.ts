@@ -2,11 +2,12 @@ import { Client, Collection, Snowflake } from 'discord.js';
 import path from 'path';
 import fs from 'fs';
 
-import { Command, EventHandler } from './typings/types';
+import { Command, EventHandler, SlashCommand } from './typings/types';
 import { token } from './assets/auth.json';
 
 export class GiveawayUtility extends Client {
     commands: Collection<string, Command>;
+    slash_commands: Collection<string, SlashCommand>;
     donations: Collection<string, number>;
     cooldowns: Collection<string, Collection<Snowflake, number>>;
 
@@ -18,6 +19,7 @@ export class GiveawayUtility extends Client {
         });
 
         this.commands = new Collection();
+        this.slash_commands = new Collection();
         this.donations = new Collection();
         this.cooldowns = new Collection();
     }

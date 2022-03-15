@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { ClientEvents, Message, PermissionResolvable, ColorResolvable, EmojiIdentifierResolvable, User, Snowflake, GuildMember, TextChannel, MessageReaction, RoleResolvable, APIMessage, ApplicationCommandOptionData, CommandInteraction } from 'discord.js';
-import { EventEmitter } from 'events';
+import { ClientEvents, Message, PermissionResolvable, RoleResolvable, ApplicationCommandOptionData, CommandInteraction } from 'discord.js';
+import { APIMessage } from 'discord-api-types';
 
 import { GiveawayUtility } from '../bot';
 

@@ -12,6 +12,10 @@ export = {
     callback: async function(message: Message) {
         const self = this as unknown as GiveawayUtility;
 
+        if(!self.application?.owner) {
+            await self.application?.fetch();
+        }
+
         if(message.author.bot || message.webhookId) {
             return;
         }
@@ -50,8 +54,8 @@ export = {
 
         let has_permissions = true;
         if(message.guild && command.permissions) {
-            for(const perm of command.permissions) {
-                if(!message.member!.permissions.has(perm, true)) {
+            for(const permission of command.permissions) {
+                if(!message.member?.permissions.has(permission, true)) {
                     has_permissions = false;
                     break;
                 }
@@ -59,13 +63,13 @@ export = {
         }
 
         if(!has_permissions) {
-            return message.reply(('You need to have the `$PERMS` permission(s) to run this command.').replace(/\$PERMS/g, `\`${command.permissions!.map((permission) => parseCase(permission.toString())).join(', ')}\``));
+            return message.reply(('You need to have the `$PERMS` permission(s) to run this command.').replace(/\$PERMS/g, `\`${command.permissions?.map((permission) => parseCase(permission.toString())).join(', ')}\``));
         }
 
         let has_roles = true;
         if(command.roles) {
             for(const role of command.roles) {
-                if(!message.member!.roles.cache.has(role.toString()) && !message.member!.permissions.has('ADMINISTRATOR', true)) {
+                if(!message.member?.roles.cache.has(role.toString()) && !message.member?.permissions.has('ADMINISTRATOR', true)) {
                     has_roles = false;
                     break;
                 }
@@ -73,7 +77,7 @@ export = {
         }
 
         if(!has_roles) {
-            return message.reply({ content: `You need to have at least the <@&${command.roles!.map((role) => parseCase(role.toString())).join('>, <@&')}> role(s) to run this command.`, allowedMentions: { parse: [] } });
+            return message.reply({ content: `You need to have at least the <@&${command.roles?.map((role) => parseCase(role.toString())).join('>, <@&')}> role(s) to run this command.`, allowedMentions: { parse: [] } });
         }
 
         if(!self.cooldowns.has(command.name)) {
