@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Command, EventHandler } from '../typings/types';
 import { prefix, owner_id } from '../assets/config.json';
 import { createError, parseCase } from '../assets/functions';
-import GiveawayUtility from '../bot';
+import { GiveawayUtility } from '../bot';
 
 export = {
     name: 'messageCreate',

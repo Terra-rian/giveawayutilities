@@ -2,7 +2,7 @@
 import { ClientEvents, Message, PermissionResolvable, ColorResolvable, EmojiIdentifierResolvable, User, Snowflake, GuildMember, TextChannel, MessageReaction, RoleResolvable, APIMessage, ApplicationCommandOptionData, CommandInteraction } from 'discord.js';
 import { EventEmitter } from 'events';
 
-import GiveawayUtility from '../bot';
+import { GiveawayUtility } from '../bot';
 
 export interface Command {
     /**
