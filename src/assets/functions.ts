@@ -1,4 +1,4 @@
-import { MessageEmbed, ColorResolvable } from 'discord.js';
+import { MessageEmbed } from 'discord.js';
 
 import { owner_tag, owner_pfp } from './config.json';
 import { token } from './auth.json';
