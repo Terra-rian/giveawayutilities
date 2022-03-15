@@ -1,0 +1,6 @@
+{
+    "prefix": "BOT_PREFIX",
+    "owner_id": "BOT_SELF_HOSTER_DISCORD_ID",
+    "owner_tag": "BOT_SELF_HOSTER_DISCORD_TAG",
+    "owner_pfp": "BOT_SELF_HOSTER_DISCORD_PFP"
+}

@@ -1,0 +1,43 @@
+{
+  "name": "giveawayutilities",
+  "version": "1.0.0",
+  "description": "A bot to track giveaways in Dank Stonkers",
+  "main": "bot.ts",
+  "scripts": {
+    "start": "nodemon src/bot.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Terra-rian/giveawayutilities.git"
+  },
+  "author": "Terrarian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Terra-rian/giveawayutilities/issues"
+  },
+  "homepage": "https://github.com/Terra-rian/giveawayutilities#readme",
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "discord-api-types": "^0.26.0",
+    "discord.js": "^13.4.0",
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.17.0",
+    "serialize-javascript": "^6.0.0",
+    "sourcebin": "^4.2.5",
+    "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/ms": "^0.7.31",
+    "@types/node": "^17.0.21",
+    "@types/serialize-javascript": "^5.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.11.0"
+  }
+}

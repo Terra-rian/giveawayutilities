@@ -1,0 +1,7 @@
+{
+    "token": "BOT_TOKEN",
+    "db_host": "DATABASE_HOST",
+    "db_user": "DATABASE_USER",
+    "db_password": "DATABASE_PASSWORD",
+    "donation_db_name": "DONATION_DATABASE_NAME"
+}
