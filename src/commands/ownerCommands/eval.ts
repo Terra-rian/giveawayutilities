@@ -40,7 +40,7 @@ export = {
                     .setFooter({ text: `Evaluated in ${time.toFixed(3)} millisecond(s)` })
                     .setColor('RANDOM');
 
-                if(embed.description!.length > 4096) {
+                if(embed.description && embed.description.length > 4096) {
                     const bin = await sourcebin.create([{
                         content: `${final_output}`,
                         language: 'javascript',
@@ -63,7 +63,7 @@ export = {
                 .setFooter({ text: 'An error occurred!' })
                 .setColor('RANDOM');
 
-            if(embed.description!.length > 4096) {
+            if(embed.description && embed.description.length > 4096) {
                 const bin = await sourcebin.create([{
                     content: `${err}`,
                     language: 'javascript',

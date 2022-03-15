@@ -12,7 +12,7 @@ export = {
     guildOnly: true,
     roles: ['786354739255705600'],
     execute: async (message, args) => {
-        const target = await message.guild!.members.fetch(message.mentions.users.first() as User) || message.guild!.members.cache.get((args as string[])[0]);
+        const target = await message.guild?.members.fetch(message.mentions.users.first() as User) || message.guild?.members.cache.get((args as string[])[0]);
         let to_add;
 
         if(!target || !args) {

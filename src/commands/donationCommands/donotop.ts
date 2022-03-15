@@ -38,7 +38,7 @@ export = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`${message.guild!.name}'s Top Donations`)
+                .setTitle(`${message.guild?.name}'s Top Donations`)
                 .setDescription(top)
                 .setColor('RANDOM')
                 .setFooter({ text: `Requested by ${message.author.tag}` })

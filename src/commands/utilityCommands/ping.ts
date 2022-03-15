@@ -9,7 +9,7 @@ export = {
         return message.channel.send('Ping?').then((msg) => {
             setTimeout(() => {
                 msg.edit(`\`\`\`javascript\nPong! | Message latency: ${msg.createdTimestamp - message.createdTimestamp} ms\n\nPing! | API latency: ${Math.round(client?.ws.ping ?? 50)} ms\`\`\``);
-            }, 2000);
+            }, 1500);
         });
     },
 } as Command;

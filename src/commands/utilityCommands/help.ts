@@ -62,14 +62,14 @@ export = {
                 }
             }
 
-            const command = client!.commands.get(name) || client!.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(name));
+            const command = client?.commands.get(name) || client?.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(name));
             if(!command) {
                 return message.reply({ embeds: [createError(`That's not a valid command!\n\nUse \`${prefix}help (category name)\` to see all of the available commands and categories!`)] });
             }
 
             const cmd_embed = new MessageEmbed()
                 .setTitle(`${prefix}${command.name} info`)
-                .setThumbnail(client!.user!.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(client?.user ? client.user.displayAvatarURL({ dynamic: true }) : '')
                 .setTimestamp()
                 .setColor('RANDOM');
 
