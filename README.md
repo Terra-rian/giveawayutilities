@@ -29,6 +29,7 @@ To use this bot, prepend `gw!` (or the prefix of your choice, if you happen to c
     - Navigate to `src/assets` (relative to the root folder).
     - There are 2 files, `auth.example.json` and `config.example.json`:
         - For each file, fill in the proper credentials for each key.
+        - Remove `example` from the file names, so they become `auth.json` / `config.json`.
         - To get a Discord bot token, head to the [Developer Dashboard](https://discord.com/login?redirect_to=%2Fdevelopers%2Fapplications).
         - Free MySQL databases are available at https://www.alwaysdata.com/.
 
