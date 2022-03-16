@@ -14,7 +14,7 @@ export function createError(error: string) {
         .setTitle('Error!')
         .setDescription(error)
         .setTimestamp()
-        .setFooter({ text: `Made by ${owner_tag}`, iconURL: owner_pfp })
+        .setFooter({ text: `Made by ${owner_tag}`, iconURL: owner_pfp });
 
     return embed;
 }
@@ -73,7 +73,7 @@ export function ordinalSuffixOf(num: number): string {
  * @param {string} value The value to convert.
  */
 export function convertAbbreviatedValue(value: string): number {
-    const multiplier = value.substring(-1).toLowerCase();
+    const multiplier = value.substring(value.length - 1, value.length).toLowerCase();
 
     switch(multiplier) {
         case 'k':
