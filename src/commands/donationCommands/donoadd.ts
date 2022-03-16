@@ -19,16 +19,16 @@ export = {
             return message.reply({ embeds: [createError('Please make sure to mention a user or provide an ID, and specify how much they donated!')] });
         }
 
-        if(args[1].substring(-1).toLowerCase().includes('k') || args[1].substring(-1).toLowerCase().includes('m') || args[1].substring(-1).toLowerCase().includes('b') || args[1].substring(-1).toLowerCase().includes('t')) {
+        if(args[1].substring(args[1].length - 1, args[1].length).toLowerCase().includes('k') || args[1].substring(args[1].length - 1, args[1].length).toLowerCase().includes('m') || args[1].substring(args[1].length - 1, args[1].length).toLowerCase().includes('b') || args[1].substring(args[1].length - 1, args[1].length).toLowerCase().includes('t')) {
             to_add = convertAbbreviatedValue(args[1]);
-        } else if(args[1].includes('e') || args[1].includes('E')) {
+        } else if(args[1].toLowerCase().includes('e')) {
             to_add = convertExponentialValue(args[1]);
         } else {
             to_add = parseInt(args[1]);
         }
 
-        if(to_add <= 0) {
-            return message.reply({ embeds: [createError('Please make sure that the donation amount you\'re logging is more than 0 coins!')] });
+        if(!isNaN(to_add) && to_add <= 0) {
+            return message.reply({ embeds: [createError('Please make sure that the donation amount you\'re logging is more than 0 coins, and is a real number!')] });
         }
 
         try {

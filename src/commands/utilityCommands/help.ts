@@ -17,7 +17,7 @@ export = {
         const donation_command_files = fs.readdirSync(path.join(process.cwd(), 'src', 'commands', 'donationCommands')).filter((file) => file.endsWith('.ts'));
         const utility_command_files = fs.readdirSync(path.join(process.cwd(), 'src', 'commands', 'utilityCommands')).filter((file) => file.endsWith('.ts'));
 
-        if(!args) {
+        if(!args || !args[0]) {
             const basic_help_embed = new MessageEmbed()
                 .setTitle('Giveaway Utilities Help')
                 .setDescription('*The arguments inside `<>` are not required, but any mentions as well as the arguments inside `[]` are.*')

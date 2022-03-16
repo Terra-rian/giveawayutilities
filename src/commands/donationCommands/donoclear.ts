@@ -15,8 +15,8 @@ export = {
         let target;
 
         if(message.guild && message.mentions.members?.first()) {
-            target = (await message.guild.members.fetch(message.mentions.members.first())).first();
-        } else if(message.guild && !message.mentions.members?.first() && args) {
+            target = message.mentions.members.first();
+        } else if(message.guild && !message.mentions.members?.first() && args && args[0] !== 'server') {
             target = message.guild.members.cache.get(args[0]);
         } else {
             return message.reply({ embeds: [createError('Please specify either a user via ID or mention, or `server` to clear the entire server\'s stats (`server` option not implemented yet).\n\n⚠️⚠️⚠️ **THIS ACTION IS NOT REVERSIBLE! USE WITH CAUTION!** ⚠️⚠️⚠️')] });
