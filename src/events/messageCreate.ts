@@ -1,9 +1,9 @@
 import { Message, Collection, EmbedBuilder, TextChannel, Events } from 'discord.js';
 import moment from 'moment';
 
-import { Command, EventHandler } from '../typings/types';
-import { prefix, owner_id } from '../assets/config.json';
+import { prefix, owner_id, owner_guild_id, error_channel_id } from '../assets/config.json';
 import { createError, parseCase } from '../assets/functions';
+import { Command, EventHandler } from '../typings/types';
 import { GiveawayUtility } from '../bot';
 
 export = {
@@ -44,7 +44,7 @@ export = {
             return message.reply(`The command \`${command.name}\` is only usable within DMs.`);
         }
 
-        if(command.testOnly && message.guild?.id !== '724624373369012231') {
+        if(command.testOnly && message.guild?.id !== owner_guild_id) {
             return message.reply(`The command \`${command.name}\` is only usable in the bot dev's testing server.`);
         }
 
@@ -112,7 +112,7 @@ export = {
                 .setColor('Random')
                 .setTimestamp();
 
-            const channel = message.client.channels.cache.get('787167955241795594');
+            const channel = message.client.channels.cache.get(error_channel_id);
             try {
                 const webhooks = await (channel as TextChannel).fetchWebhooks();
                 const webhook = webhooks.first();
