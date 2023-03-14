@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import { owner_tag, owner_pfp } from './config.json';
 import { token } from './auth.json';
@@ -9,7 +9,7 @@ import { token } from './auth.json';
  * @example const error = createError('An error occurred!');
  */
 export function createError(error: string) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setColor('#ff0000')
         .setTitle('Error!')
         .setDescription(error)
