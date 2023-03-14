@@ -1,17 +1,18 @@
+import { ActivityType, Events } from 'discord.js';
 import path from 'path';
 import fs from 'fs';
 
 import { EventHandler, SlashCommand } from '../typings/types';
+import { owner_guild_id } from '../assets/config.json';
 import { donations } from '../models/donations';
 
 import { GiveawayUtility } from '../bot';
 
 export = {
-    name: 'ready',
+    name: Events.ClientReady,
     once: false,
     callback: async function() {
         const self = this as unknown as GiveawayUtility;
-        const guild_id = '724624373369012231';
 
 		try {
 			const slash_command_files = fs.readdirSync(path.join(process.cwd(), 'src', 'commands', 'slashCommands')).filter((file) => file.endsWith('.ts'));
@@ -34,7 +35,7 @@ export = {
 						options: command.options,
 					};
 
-					await self.guilds.cache.get(guild_id)?.commands.create(data);
+					await self.guilds.cache.get(owner_guild_id)?.commands.create(data);
 				}
 
 				self.slash_commands.set(command.name, command);
@@ -48,7 +49,7 @@ export = {
             console.log('Donations database synced!');
         });
 
-        self.user?.setPresence({ activities: [{ name: 'for giveaway donations', type: 'WATCHING' }], status: 'dnd' });
+        self.user?.setPresence({ activities: [{ name: 'for giveaway donations', type: ActivityType.Watching }], status: 'dnd' });
 
         console.log('Connected to Discord!');
     },

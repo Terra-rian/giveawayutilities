@@ -1,4 +1,4 @@
-import { Message, Collection, MessageEmbed, TextChannel } from 'discord.js';
+import { Message, Collection, EmbedBuilder, TextChannel, Events } from 'discord.js';
 import moment from 'moment';
 
 import { Command, EventHandler } from '../typings/types';
@@ -7,7 +7,7 @@ import { createError, parseCase } from '../assets/functions';
 import { GiveawayUtility } from '../bot';
 
 export = {
-    name: 'messageCreate',
+    name: Events.MessageCreate,
     once: false,
     callback: async function(message: Message) {
         const self = this as unknown as GiveawayUtility;
@@ -69,7 +69,7 @@ export = {
         let has_roles = true;
         if(command.roles) {
             for(const role of command.roles) {
-                if(!message.member?.roles.cache.has(role.toString()) && !message.member?.permissions.has('ADMINISTRATOR', true)) {
+                if(!message.member?.roles.cache.has(role.toString()) && !message.member?.permissions.has('Administrator', true)) {
                     has_roles = false;
                     break;
                 }
@@ -86,7 +86,7 @@ export = {
 
         const now = Date.now();
         const timestamps = self.cooldowns.get(command.name);
-        const cooldown_amount = (command.cooldown) * 1000;
+        const cooldown_amount = command.cooldown * 1000;
 
         if(timestamps && timestamps.has(message.author.id)) {
             const expiration_time = (timestamps.get(message.author.id) ?? 0) + cooldown_amount;
@@ -106,10 +106,10 @@ export = {
             message.reply({ embeds: [createError(`An error occured while executing that command.\n\`${error as Error}\``)] });
 
             const date = new Date();
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setTitle(`${(error as Error).message}`)
                 .setDescription(`Time: \`${moment(date).format('HH:mm:ss DD/MM/YYYY')}\`\nServer ID: \`${message.guild?.id}\`\nChannel ID: \`${message.channel.id}\`\nUser ID: \`${message.author.id}\`\n\`\`\`\n${(error as Error).stack as string}\n\`\`\``)
-                .setColor('RANDOM')
+                .setColor('Random')
                 .setTimestamp();
 
             const channel = message.client.channels.cache.get('787167955241795594');

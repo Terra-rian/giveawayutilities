@@ -1,10 +1,10 @@
-import { CommandInteraction } from 'discord.js';
+import { CommandInteraction, Events } from 'discord.js';
 
 import { EventHandler } from '../typings/types';
 import { GiveawayUtility } from '../bot';
 
 export = {
-    name: 'interactionCreate',
+    name: Events.InteractionCreate,
     callback: async function(interaction: CommandInteraction) {
         if(!interaction.isCommand()) {
             return;
