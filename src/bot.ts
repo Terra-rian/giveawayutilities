@@ -1,4 +1,4 @@
-import { Client, Collection, Snowflake } from 'discord.js';
+import { Client, Collection, Partials, Snowflake } from 'discord.js';
 import path from 'path';
 import fs from 'fs';
 
@@ -14,8 +14,7 @@ export class GiveawayUtility extends Client {
     constructor() {
         super({
             intents: 32767,
-            partials: ['CHANNEL', 'GUILD_MEMBER', 'MESSAGE', 'REACTION', 'USER'],
-            restTimeOffset: 100,
+            partials: [Partials.Channel, Partials.GuildMember, Partials.Message, Partials.Reaction, Partials.User],
         });
 
         this.commands = new Collection();
@@ -74,13 +73,9 @@ for(const file of utility_command_files) {
 }
 
 const events = fs.readdirSync(path.join(process.cwd(), 'src', 'events'));
-function loadEvents() {
-    for(const file of events) {
-        const event: EventHandler = require(path.join(process.cwd(), 'src', 'events', file));
-        client.on(event.name, event.callback.bind(client));
-    }
+for(const file of events) {
+    const event: EventHandler = require(path.join(process.cwd(), 'src', 'events', file));
+    client.on(event.name, event.callback.bind(client));
 }
-
-loadEvents();
 
 client.login(token);
