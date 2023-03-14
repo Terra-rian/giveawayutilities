@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { Sequelize } from 'sequelize';
 
 import { createError } from '../../assets/functions';
@@ -37,10 +37,10 @@ export = {
                 top += `${emojis[i]} <@!${donor.get('user_id')}> (\`${donor.get('user_id')}\`) - **${Number(donor.get('donations')).toLocaleString()}** coins\n`;
             });
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setTitle(`${message.guild?.name}'s Top Donations`)
                 .setDescription(top)
-                .setColor('RANDOM')
+                .setColor('Random')
                 .setFooter({ text: `Requested by ${message.author.tag}` })
                 .setTimestamp();
 

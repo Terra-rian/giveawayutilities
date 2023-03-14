@@ -1,4 +1,4 @@
-import { MessageEmbed, User } from 'discord.js';
+import { EmbedBuilder, User } from 'discord.js';
 
 import { createError } from '../../assets/functions';
 import { donations } from '../../models/donations';
@@ -20,12 +20,17 @@ export = {
         try {
             const donation = await donations.findOne({ where: { user_id: target.id } });
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setTitle(`${target.user.tag}'s Donations`)
-                .addField('Info', `<@!${target.id}> (\`${target.id}\`)\nTheir first donation was ${donation?.get('createdAt') ? `at **${donation.get('createdAt')}**` : '**never**.'}`)
-                .addField('Donations', `They have donated a total of **${donation?.get('donations') ? `${Number(donation.get('donations')).toLocaleString()}` : '0'}** coins!` || 'They have no donations yet...')
-                .setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
-                .setColor('RANDOM')
+                .addFields({
+                    name: 'Info',
+                    value: `<@!${target.id}> (\`${target.id}\`)\nTheir first donation was ${donation?.get('createdAt') ? `at **${donation.get('createdAt')}**` : '**never**.'}`,
+                }, {
+                    name: 'Donations',
+                    value: `They have donated a total of **${donation?.get('donations') ? `${Number(donation.get('donations')).toLocaleString()}` : '0'}** coins!` || 'They have no donations yet...',
+                })
+                .setThumbnail(target.user.displayAvatarURL())
+                .setColor('Random')
                 .setTimestamp()
                 .setFooter({ text: `Requested by ${message.author.tag}` });
 

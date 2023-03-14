@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import path from 'path';
 import fs from 'fs';
 
@@ -18,12 +18,19 @@ export = {
         const utility_command_files = fs.readdirSync(path.join(process.cwd(), 'src', 'commands', 'utilityCommands')).filter((file) => file.endsWith('.ts'));
 
         if(!args || !args[0]) {
-            const basic_help_embed = new MessageEmbed()
+            const basic_help_embed = new EmbedBuilder()
                 .setTitle('Giveaway Utilities Help')
                 .setDescription('*The arguments inside `<>` are not required, but any mentions as well as the arguments inside `[]` are.*')
-                .addField('**🤑 Donations**', `\`${prefix}help donations\``, true)
-                .addField('**🧰 Utilities**', `\`${prefix}help utility\``, true)
-                .setColor('RANDOM')
+                .addFields({
+                    name: '**🤑 Donations**',
+                    value: `\`${prefix}help donations\``,
+                    inline: true,
+                }, {
+                    name: '**🧰 Utilities**',
+                    value: `\`${prefix}help utility\``,
+                    inline: true,
+                })
+                .setColor('Random')
                 .setTimestamp();
 
             return message.reply({ embeds: [basic_help_embed] });
@@ -32,8 +39,8 @@ export = {
             const cmd_array: string[] = [];
 
             if(categories.includes(name)) {
-                const category_embed = new MessageEmbed()
-                    .setColor('RANDOM')
+                const category_embed = new EmbedBuilder()
+                    .setColor('Random')
                     .setFooter({ text: `Use \`${prefix}\` before each command!` })
                     .setTimestamp();
 
@@ -67,18 +74,18 @@ export = {
                 return message.reply({ embeds: [createError(`That's not a valid command!\n\nUse \`${prefix}help (category name)\` to see all of the available commands and categories!`)] });
             }
 
-            const cmd_embed = new MessageEmbed()
+            const cmd_embed = new EmbedBuilder()
                 .setTitle(`${prefix}${command.name} info`)
-                .setThumbnail(client?.user ? client.user.displayAvatarURL({ dynamic: true }) : '')
+                .setThumbnail(client?.user ? client.user.displayAvatarURL() : '')
                 .setTimestamp()
-                .setColor('RANDOM');
+                .setColor('Random');
 
             if(command.description && command.description.length > 0) {
                 cmd_embed.setDescription(command.description);
             }
 
             if(command.aliases) {
-                cmd_embed.addField('Aliases', `\`${command.aliases.length > 0 ? command.aliases.join(', ') : 'No Aliases'}\``, true);
+                cmd_embed.addFields({ name: 'Aliases', value: `\`${command.aliases.length > 0 ? command.aliases.join(', ') : 'No Aliases'}\``, inline: true });
             }
 
             /* if(command.usage) {
@@ -86,7 +93,7 @@ export = {
             } */
 
             if(command.cooldown) {
-                cmd_embed.addField('Cooldown', `\`${command.cooldown && command.cooldown > 0 ? `${command.cooldown} seconds` : 'No Cooldown'}\``, true);
+                cmd_embed.addFields({ name: 'Cooldown', value: `\`${command.cooldown && command.cooldown > 0 ? `${command.cooldown} seconds` : 'No Cooldown'}\``, inline: true });
             }
 
             return message.reply({ embeds: [cmd_embed] });

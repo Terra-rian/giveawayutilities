@@ -19,12 +19,13 @@ export = {
             output += '\n';
         });
 
-        const bin = await sourcebin.create([{
-            content: output,
-            language: 'json',
-        }], {
+        const bin = await sourcebin.create({
             title: 'All Donations',
             description: `Exported at ${new Date().toLocaleString()}`,
+            files: [{
+                content: output,
+                language: 'json',
+            }],
         });
 
         console.log(bin.url);

@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { inspect } from 'util';
 import { createError, removeCodeblock } from '../../assets/functions';
 import { Timer } from '../../assets/timer';
@@ -35,18 +35,19 @@ export = {
                 timer.stop();
                 const time = timer.ms();
 
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setDescription(`**Input**\n\`\`\`javascript\n${to_eval}\`\`\`\n**Output**\n\`\`\`javascript\n${final_output}\`\`\``)
                     .setFooter({ text: `Evaluated in ${time.toFixed(3)} millisecond(s)` })
-                    .setColor('RANDOM');
+                    .setColor('Random');
 
-                if(embed.description && embed.description.length > 4096) {
-                    const bin = await sourcebin.create([{
-                        content: `${final_output}`,
-                        language: 'javascript',
-                    }], {
+                if(embed.data.description && embed.data.description.length > 4096) {
+                    const bin = await sourcebin.create({
                         title: 'Evaluated Output',
                         description: 'The output was over 4k chars',
+                        files: [{
+                            content: `${final_output}`,
+                            language: 'javascript',
+                        }],
                     });
 
                     console.log(bin);
@@ -58,18 +59,19 @@ export = {
         } catch(err) {
             const to_eval = removeCodeblock(args.join(' '));
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setDescription(`**Input**\n\`\`\`javascript\n${to_eval}\`\`\`\n**Output**\n\`\`\`javascript\n${err}\`\`\``)
                 .setFooter({ text: 'An error occurred!' })
-                .setColor('RANDOM');
+                .setColor('Random');
 
-            if(embed.description && embed.description.length > 4096) {
-                const bin = await sourcebin.create([{
-                    content: `${err}`,
-                    language: 'javascript',
-                }], {
+            if(embed.data.description && embed.data.description.length > 4096) {
+                const bin = await sourcebin.create({
                     title: 'Evaluated Output',
                     description: 'The output was over 4k chars',
+                    files: [{
+                        content: `${err}`,
+                        language: 'javascript',
+                    }],
                 });
 
                 return message.reply(`The output was larger than 4k characters, here's the sourcebin link:\n<${bin.url}>`);
