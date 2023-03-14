@@ -43,7 +43,7 @@ export class Timer {
     clear(): Timer;
 
     static deserialize(serializedTimer: string): Timer;
-    static benchmark(fn: () => any): Timer;
+    static benchmark(fn: () => unknown): Timer;
 
     private getTime(ms: number): Time;
 }

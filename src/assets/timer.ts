@@ -155,7 +155,7 @@ export class Timer {
     /**
      * Formats the recorded time using a template.
      */
-    format(template: string = '%label%d d, %h h, %m m, %s s, %ms ms'): string {
+    format(template = '%label%d d, %h h, %m m, %s s, %ms ms'): string {
         const time = this.time();
 
         return template.replace('%label', this.label ? `${this.label}: ` : '').replace('%ms', time.ms.toString()).replace('%s', time.s.toString()).replace('%m', time.m.toString()).replace('%h', time.h.toString()).replace('%d', time.d.toString());
@@ -198,7 +198,7 @@ export class Timer {
     /**
      * Creates a benchmark timer for a function.
      */
-    static benchmark(fn: Function): Timer {
+    static benchmark(fn: () => unknown): Timer {
         const timer = new Timer({ label: fn.name }).start();
         fn();
 
