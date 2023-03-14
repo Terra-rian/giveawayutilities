@@ -14,7 +14,8 @@ This is not a publicly hosted bot, you will need to host it yourself. Refer to t
 
 ## USING THE BOT
 
-To use this bot, prepend `gw!` (or the prefix of your choice, if you happen to change the `config.json` file) before any command, such as `gw!help`. Each command has a help message, in case you forget how to use it.
+To use this bot, prepend `gw!` (or the prefix of your choice, if you happen to change the `config.json` file) before any command, such as `gw!help`. Each command has a help message, in case you forget how to use it.  
+Slash commands are also provided, just prepend a `/` before the command.
 
 ## SELF-HOSTING
 
