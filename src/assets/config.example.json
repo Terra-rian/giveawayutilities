@@ -3,5 +3,6 @@
     "owner_id": "BOT_SELF_HOSTER_DISCORD_ID",
     "owner_tag": "BOT_SELF_HOSTER_DISCORD_TAG",
     "owner_pfp": "BOT_SELF_HOSTER_DISCORD_PFP",
-    "owner_guild_id": "BOT_SELF_HOSTER_GUILD_ID"
+    "owner_guild_id": "BOT_SELF_HOSTER_GUILD_ID",
+    "error_channel_id": "ERROR_CHANNEL_ID"
 }
