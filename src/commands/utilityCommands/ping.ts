@@ -8,7 +8,7 @@ export = {
     execute: async (message, _args, client) => {
         return message.channel.send('Ping?').then((msg) => {
             setTimeout(() => {
-                msg.edit(`\`\`\`javascript\nPong! | Message latency: ${msg.createdTimestamp - message.createdTimestamp} ms\n\nPing! | API latency: ${Math.round(client?.ws.ping ?? 50)} ms\`\`\``);
+                msg.edit(`\`\`\`c\nPong! | Message latency: ${msg.createdTimestamp - message.createdTimestamp} ms\n\nPing! | API latency: ${Math.round(client?.ws.ping ?? 50)} ms\`\`\``);
             }, 1500);
         });
     },
