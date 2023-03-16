@@ -13,7 +13,7 @@ export class GiveawayUtility extends Client {
 
     constructor() {
         super({
-            intents: 32767,
+            intents: 65343,
             partials: [Partials.Channel, Partials.GuildMember, Partials.Message, Partials.Reaction, Partials.User],
         });
 
