@@ -12,7 +12,7 @@
         "NodeJS": true
     },
     "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint"],
     "parserOptions": {
         "ecmaVersion": 2021
     },
